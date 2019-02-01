@@ -1,0 +1,18 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+script:
+  - docker pull dxjoke/tectonic-docker
+  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --keep-intermediates --reruns 0 biber-mwe.tex; biber biber-mwe; tectonic biber-mwe.tex; tectonic resume.tex"
+
+# after_success:
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+#     docker push jbharter/xyce-deps-docker:release;
+#     fi
+#   - if [ "$TRAVIS_BRANCH" == "develop" ]; then
+#     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+#     docker push jbharter/xyce-deps-docker:latest;
+#     fi

@@ -7,9 +7,6 @@ jobs:
       - checkout
       - run:
           name: LaTeX build
-          command: latex resume.tex
-      - run:
-          name: PDF output
-          command: dvipdfm resume.dvi
+          command: make pdf
       - store_artifacts:
           path: resume.pdf

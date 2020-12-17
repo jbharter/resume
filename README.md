@@ -1,4 +1,7 @@
 # Resume As Code
+
+Build: [![develop](https://circleci.com/gh/jbharter/resume/tree/develop.svg?style=svg)](https://circleci.com/gh/jbharter/resume/tree/develop)
+
 I don't know who the original author of this template is, but I think the most
 recent has been the eponymous Friggeri, who's template I came by as a template
 in sharelatex, now Overleaf. I don't intend to market any ideas here as my own,

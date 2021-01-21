@@ -11,4 +11,4 @@ pdf:
 
 ## Cleanup build files
 clean:
-	rm -rf resume.log resume.out resume.aux resume.blg resume.bbl resume.bcf resume.run.xml
+	$(RM) *.log *.out *.aux *.blg *.bbl *.bcf *.xml

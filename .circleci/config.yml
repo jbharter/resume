@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: tianon/latex
+      - image: jbharter/resume
     steps:
       - checkout
       - run:
@@ -10,25 +10,3 @@ jobs:
           command: make pdf
       - store_artifacts:
           path: resume.pdf
-  publish-github-release:
-    docker:
-      - image: cibuilds/github:0.10
-    steps:
-      - attach_workspace:
-          at: ./artifacts
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ./artifacts/
-
-workflows:
-  version: 2
-  just_build:
-    jobs:
-      - build
-  build_and_deploy:
-    jobs:
-      - build
-      - publish-github-release:
-          requires:
-            - build
